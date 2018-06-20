@@ -9,9 +9,9 @@ var prefix = fmt.Sprintf("/%s/event", version)
 
 var routes = Routes{
 	Route{
-		"Create",
+		"New Event",
 		"GET",
-		fmt.Sprintf("%s/create", prefix),
+		fmt.Sprintf("%s/new", prefix),
 		eventFired,
 	},
 }

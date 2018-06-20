@@ -1,16 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"os/exec"
 	"log"
 )
 
 func eventFired(w http.ResponseWriter, r *http.Request)  {
-	fmt.Printf("An event was fired %v --- %v", w, r)
+	var serviceName = r.URL.Query().Get("serviceName")
 
-	cmd := exec.Command("docker-gen")
+	cmd := exec.Command(*command, serviceName)
 	err := cmd.Run()
 
 	if err != nil {
