@@ -6,12 +6,14 @@ import (
 	"strings"
 )
 
-func authenticate() http.Handler {
+func authenticate(inner http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if !isAuthenticated(w, r) {
 			setNotAuthenticated(w)
 			return
 		}
+
+		inner.ServeHTTP(w, r)
 	})
 }
 
