@@ -3,16 +3,14 @@ package main
 import (
 	"net/http"
 	"os/exec"
-	"log"
+	"os"
 )
 
-func eventFired(w http.ResponseWriter, r *http.Request)  {
-	var serviceName = r.URL.Query().Get("serviceName")
+func eventFired(w http.ResponseWriter, r *http.Request) {
 
-	cmd := exec.Command(*command, serviceName)
-	err := cmd.Run()
+	_, err := exec.Command("/bin/bash", "-c", *command).CombinedOutput()
 
 	if err != nil {
-		log.Printf("%v", err)
+		os.Stderr.WriteString(err.Error())
 	}
 }
