@@ -15,6 +15,11 @@ services:
         constraints: [node.role == manager]
 ```
 
+# build / install 
+- `go get -d -v ./...`
+- `go build ./...`
+- `go install -v ./...`
+
 # run 
 
 To expose an event endpoint and listen to docker service:create events
@@ -28,8 +33,3 @@ To specify specific commands for each event you can use a command file. See exam
 ```bash
 docker-swarm-watcher -u username -p password -s="unix:///var/run/docker.sock" -f="/home/user/commands.yml"
 ```
-
-# build / install 
-- `go get -d -v ./...`
-- `go build ./...`
-- `go install -v ./...`
