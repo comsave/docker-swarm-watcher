@@ -15,7 +15,7 @@ var (
 	password = flag.String("p", "password", "Basic authentication password")
 	port     = flag.String("port", "8888", "Port to expose -- defaults to 8888")
 	socket   = flag.String("s", "", "Docker socket to poll -- e.g. unix:///var/run/docker.sock")
-	events   = flag.String("e", "", "Docker events to listen to")
+	events   = flag.String("e", "", "Comma separated list of Docker events to listen to")
 )
 
 func main() {
