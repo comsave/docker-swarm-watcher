@@ -8,6 +8,8 @@ import (
 	"strings"
 	"fmt"
 	"log"
+	"time"
+	"strconv"
 )
 
 func eventFired(w http.ResponseWriter, r *http.Request) {
@@ -19,6 +21,10 @@ func eventFired(w http.ResponseWriter, r *http.Request) {
 }
 
 func polEventFired(event *docker.APIEvents) {
+	if isExpired(event) {
+		return
+	}
+
 	eventType := fmt.Sprintf("%s:%s", event.Type, event.Action)
 
 	if getEventCommand(eventType) != "" {
@@ -48,4 +54,20 @@ func getEventCommand(eventType string) string {
 	}
 
 	return ""
+}
+
+func isExpired(event *docker.APIEvents) bool {
+	if *maxEventAge == "" {
+		return false
+	}
+	date := time.Unix(event.Time, 0)
+	difference := time.Now().Sub(date)
+
+	maxAge, err := strconv.ParseFloat(*maxEventAge, 64)
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	return difference.Minutes() <= maxAge
 }

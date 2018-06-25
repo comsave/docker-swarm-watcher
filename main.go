@@ -17,6 +17,7 @@ var (
 	socket      = flag.String("s", "", "Docker socket to poll -- e.g. unix:///var/run/docker.sock")
 	events      = flag.String("e", "", "Comma separated list of Docker events to listen to")
 	commandFile = flag.String("f", "", "Commands yml file")
+	maxEventAge = flag.String("max-event-age", "", "Replay events if there age is less than x minutes")
 )
 
 func main() {
