@@ -1,0 +1,71 @@
+events:
+  #services
+  service:create: /bin/echo created
+  service:update: /bin/echo updated
+  service:remove: /bin/echo deleted
+
+  #networks
+  network:create: ~
+  network:connect: ~
+  network:destroy: ~
+  network:disconnect: ~
+  network:remove: ~
+
+  #images
+  image:delete: ~
+  image:import: ~
+  image:load: ~
+  image:pull: ~
+  image:push: ~
+  image:save: ~
+  image:tag: ~
+  image:untag: ~
+
+  #containers
+  container:remove: ~
+  container:attach: ~
+  container:commit: ~
+  container:copy: ~
+  container:create: ~
+  container:destroy: ~
+  container:detach: ~
+  container:die: ~
+  container:exec_creacontainer:te: ~
+  container:exec_detach: ~
+  container:exec_start: ~
+  container:export: ~
+  container:health_status: ~
+  container:kill: ~
+  container:oom: ~
+  container:pause: ~
+  container:rename: ~
+  container:resize: ~
+  container:restart: ~
+  container:start: ~
+  container:stop: ~
+  container:top: ~
+  container:unpause: ~
+  container:update: ~
+
+  #volumes
+  volume:create: ~
+  volume:destroy: ~
+  volume:mount: ~
+  volume:unmount: ~
+
+  #deamons
+  deamon:reload: ~
+
+  #nodes
+  node:create: ~
+  node:remove: ~
+  node:update: ~
+
+  #secrets
+  secret:create: ~
+  secret:remove: ~
+  secret:update: ~
+
+
+
+#for more info https://docs.docker.com/engine/reference/commandline/events/#extended-description

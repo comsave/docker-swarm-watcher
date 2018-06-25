@@ -10,12 +10,13 @@ import (
 )
 
 var (
-	command  = flag.String("c", "/bin/echo", "Command to execute when an event is fired")
-	username = flag.String("u", "username", "Basic authentication username")
-	password = flag.String("p", "password", "Basic authentication password")
-	port     = flag.String("port", "8888", "Port to expose -- defaults to 8888")
-	socket   = flag.String("s", "", "Docker socket to poll -- e.g. unix:///var/run/docker.sock")
-	events   = flag.String("e", "", "Comma separated list of Docker events to listen to")
+	command     = flag.String("c", "/bin/echo", "Command to execute when an event is fired")
+	username    = flag.String("u", "username", "Basic authentication username")
+	password    = flag.String("p", "password", "Basic authentication password")
+	port        = flag.String("port", "8888", "Port to expose -- defaults to 8888")
+	socket      = flag.String("s", "", "Docker socket to poll -- e.g. unix:///var/run/docker.sock")
+	events      = flag.String("e", "", "Comma separated list of Docker events to listen to")
+	commandFile = flag.String("f", "", "Commands yml file")
 )
 
 func main() {
