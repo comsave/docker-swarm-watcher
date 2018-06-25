@@ -19,7 +19,6 @@ func GetCommands() *Commands {
 }
 
 func (c *Commands) parseCommandFile() {
-	log.Fatal(*commandFile)
 	file, _ := filepath.Abs(*commandFile)
 	yamlFile, err := ioutil.ReadFile(file)
 
