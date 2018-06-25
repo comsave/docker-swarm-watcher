@@ -6,14 +6,16 @@ import (
 	"net/http"
 	"github.com/fsouza/go-dockerclient"
 	"fmt"
+	//"time"
 )
 
 var (
 	command  = flag.String("c", "/bin/echo", "Command to execute when an event is fired")
 	username = flag.String("u", "username", "Basic authentication username")
 	password = flag.String("p", "password", "Basic authentication password")
-	port     = flag.String("port", "8888", "Port to expose")
-	socket   = flag.String("s", "", "Docker socket to poll")
+	port     = flag.String("port", "8888", "Port to expose -- defaults to 8888")
+	socket   = flag.String("s", "", "Docker socket to poll -- e.g. unix:///var/run/docker.sock")
+	events   = flag.String("e", "", "Docker events to listen to")
 )
 
 func main() {
@@ -30,28 +32,28 @@ func listenForEvents() {
 	client, err := docker.NewClient(*socket)
 
 	if err != nil {
-
+		log.Println(err)
 	}
 
 	listener := make(chan *docker.APIEvents)
 	err = client.AddEventListener(listener)
+
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 	}
 
 	defer func() {
-
 		err = client.RemoveEventListener(listener)
-		if err != nil {
-			log.Fatal(err)
-		}
 
+		if err != nil {
+			log.Println(err)
+		}
 	}()
 
 	for {
 		select {
-		case msg := <-listener:
-			polEventFired(msg)
+		case event := <-listener:
+			polEventFired(event)
 		}
 	}
 }

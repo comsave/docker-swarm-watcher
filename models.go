@@ -1,8 +1,6 @@
 package main
 
-import(
-	"net/http"
-)
+import "net/http"
 
 type Route struct {
 	Name        string
@@ -10,5 +8,3 @@ type Route struct {
 	Pattern     string
 	HandlerFunc http.HandlerFunc
 }
-
-type Routes []Route

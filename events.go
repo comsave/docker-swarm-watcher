@@ -3,25 +3,29 @@ package main
 import (
 	"net/http"
 	"os/exec"
-	"fmt"
 	"os"
 	"github.com/fsouza/go-dockerclient"
+	"strings"
+	"fmt"
 )
 
 func eventFired(w http.ResponseWriter, r *http.Request) {
-	var serviceName = r.URL.Query().Get("serviceName")
-
-	_, err := exec.Command("/bin/bash", "-c", fmt.Sprintf("%s %s", *command, serviceName)).CombinedOutput()
+	_, err := exec.Command("/bin/bash", "-c", *command).CombinedOutput()
 
 	if err != nil {
 		os.Stderr.WriteString(err.Error())
 	}
 }
 
-func polEventFired(msg *docker.APIEvents)  {
-	_, err := exec.Command("/bin/bash", "-c", *command).CombinedOutput()
+func polEventFired(event *docker.APIEvents) {
+	eventsList := strings.Split(*events, ",")
+	eventType := fmt.Sprintf("%s:%s", event.Type, event.Action)
 
-	if err != nil {
-		os.Stderr.WriteString(err.Error())
+	if stringInSlice(eventType, eventsList) {
+		_, err := exec.Command("/bin/bash", "-c", *command, event.ID).CombinedOutput()
+
+		if err != nil {
+			os.Stderr.WriteString(err.Error())
+		}
 	}
 }
