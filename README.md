@@ -1,8 +1,33 @@
 # docker-swarm-watcher
-Listens docker service create &amp; remove events and executes custom command
+Listen for docker swarm events and exposes and event endpoint.
+
+
+# Requirements
+
+Only swarm managers can retrieve swarm events.
+
+```yml
+version: "3"
+services:
+  web:
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+```
 
 # run 
-`docker-swarm-watcher -command="oh something changed at service $1"`
+
+To expose an event endpoint and listen to docker service:create events
+
+```bash
+docker-swarm-watcher -c="/bin/echo hello" -u username -p password -s="unix:///var/run/docker.sock" -e="service:create"
+```
+
+To specify specific commands for each event you can use a command file. See example-commands.yml
+
+```bash
+docker-swarm-watcher -u username -p password -s="unix:///var/run/docker.sock" -f="/home/user/commands.yml"
+```
 
 # build / install 
 - `go get -d -v ./...`

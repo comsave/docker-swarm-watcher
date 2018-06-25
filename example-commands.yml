@@ -67,5 +67,4 @@ events:
   secret:update: ~
 
 
-
 #for more info https://docs.docker.com/engine/reference/commandline/events/#extended-description
