@@ -4,7 +4,7 @@ Listen for docker swarm events and exposes and event endpoint.
 
 # Requirements
 
-Only swarm managers can retrieve swarm events.
+Only swarm managers can retrieve swarm events. If you're not receiving all events selinux might be the cause. 
 
 ```yml
 version: "3"
