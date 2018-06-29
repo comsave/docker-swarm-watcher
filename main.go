@@ -7,6 +7,7 @@ import (
 	"github.com/fsouza/go-dockerclient"
 	"fmt"
 	//"time"
+	"time"
 )
 
 var (
@@ -55,6 +56,8 @@ func listenForEvents() {
 	for {
 		select {
 		case event := <-listener:
+			log.Printf("New event reveived: Id:%s - Type: %v - Action: %v - Time: %v", event.ID, event.Type, event.Action, time.Unix(event.Time, 0))
+
 			polEventFired(event)
 		}
 	}
