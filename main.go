@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"github.com/fsouza/go-dockerclient"
 	"fmt"
-	//"time"
 	"time"
 )
 
