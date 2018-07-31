@@ -34,6 +34,8 @@ To specify specific commands for each event you can use a command file. See exam
 docker-swarm-watcher -u username -p password -s="unix:///var/run/docker.sock" -f="/home/user/commands.yml"
 ```
 
+Custom events can be send to http://localhost:8888/v1/event/new
+
 # options
 
 | Name  | Flag | Description
