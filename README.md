@@ -33,3 +33,16 @@ To specify specific commands for each event you can use a command file. See exam
 ```bash
 docker-swarm-watcher -u username -p password -s="unix:///var/run/docker.sock" -f="/home/user/commands.yml"
 ```
+
+# options
+
+| Name  | Flag | Description
+|---|---|---|
+| Command | -c | Command to execute when an event is fired |
+| username | -u | Basic authentication username |
+| password | -p | Basic authentication password |
+| port | -port | Port to expose -- defaults to 8888 |
+| socket | -s | Docker socket to poll -- e.g. unix:///var/run/docker.sock |
+| events | -e | Comma separated list of Docker events to listen to |
+| commandFile | -f | Commands yml file |
+| maxEventAge | -max-event-age | Replay events if there age is less than x minutes |
